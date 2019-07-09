@@ -35,8 +35,8 @@ Int main(Int argc, const char* argv[])
     evolver.verbosity = evolver_verbosity;
 
     // Set the evolution parameters
-    evolver.configuration().set_maximum_enclosure_radius(2.05); // The maximum size of an evolved set before early termination
-    evolver.configuration().set_maximum_step_size(0.3); // The maximum value that can be used as a time step for integration
+    //evolver.configuration().set_maximum_enclosure_radius(2.05); // The maximum size of an evolved set before early termination
+    //evolver.configuration().set_maximum_step_size(0.3); // The maximum value that can be used as a time step for integration
 
     // Declare the type to be used for the system evolution
     typedef GeneralHybridEvolver::OrbitType OrbitType;
@@ -46,7 +46,7 @@ Int main(Int argc, const char* argv[])
     // Define the initial set, by supplying the location as a list of locations for each composed automata, and
     // the continuous set as a list of variable assignments for each variable controlled on that location
     // (the assignment can be either a singleton value using the == symbol or an interval using the <= symbols)
-    HybridSet initial_set({fire|increasing},{20_decimal<=temperature<=600});
+    HybridSet initial_set({fire|increasing},{20_decimal<=temperature<=600_decimal});
     // Define the evolution time: continuous time and maximum number of transitions
     HybridTime evolution_time(4.0,5);
     // Compute the orbit using upper semantics
