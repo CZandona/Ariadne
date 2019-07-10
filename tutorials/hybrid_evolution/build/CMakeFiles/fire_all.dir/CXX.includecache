@@ -6,19 +6,19 @@
 
 #IncludeRegexTransform: 
 
-/mnt/d/GithubRepo/Ariadne/hybrid_evolution/fire.hpp
+/mnt/d/GithubRepo/Ariadne/tutorials/hybrid_evolution/fire.hpp
 cstdarg
 -
 ariadne.hpp
-/mnt/d/GithubRepo/Ariadne/hybrid_evolution/ariadne.hpp
+/mnt/d/GithubRepo/Ariadne/tutorials/hybrid_evolution/ariadne.hpp
 
-/mnt/d/GithubRepo/Ariadne/hybrid_evolution/fire_all.cpp
+/mnt/d/GithubRepo/Ariadne/tutorials/hybrid_evolution/fire_all.cpp
 cstdarg
 -
 ariadne.hpp
-/mnt/d/GithubRepo/Ariadne/hybrid_evolution/ariadne.hpp
+/mnt/d/GithubRepo/Ariadne/tutorials/hybrid_evolution/ariadne.hpp
 fire.hpp
-/mnt/d/GithubRepo/Ariadne/hybrid_evolution/fire.hpp
+/mnt/d/GithubRepo/Ariadne/tutorials/hybrid_evolution/fire.hpp
 
 /usr/local/include/ariadne/algebra/algebra.hpp
 iosfwd
