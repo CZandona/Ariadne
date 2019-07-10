@@ -1,2 +1,0 @@
-add_subdirectory(continuous)
-add_subdirectory(hybrid)

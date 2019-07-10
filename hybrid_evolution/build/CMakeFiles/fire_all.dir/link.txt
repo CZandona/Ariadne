@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/fire_all.dir/fire_all.cpp.o  -o fire_all -Wl,-rpath,/usr/local/lib /usr/local/lib/libariadne.so 
