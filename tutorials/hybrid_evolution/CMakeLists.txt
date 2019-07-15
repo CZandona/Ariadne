@@ -15,6 +15,7 @@ include_directories(SYSTEM ${ARIADNE_INCLUDE_DIRS})
 
 # Set the executable along with the required source files
 add_executable(fire_all fire.hpp fire_all.cpp)
+#add_executable(hybrid hybrid_evolution_tutorial.cpp)
 
 # Instruct to link against the ariadne library
 target_link_libraries(fire_all ${ARIADNE_LIBRARIES})

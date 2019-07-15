@@ -6,21 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/mnt/d/GithubRepo/AriadneProva/tutorials/hybrid_evolution/fire.hpp
-cstdarg
--
+/mnt/d/GithubRepo/AriadneProva/tutorials/hybrid_evolution/hybrid_evolution_tutorial.cpp
 ariadne.hpp
-/mnt/d/GithubRepo/AriadneProva/tutorials/hybrid_evolution/ariadne.hpp
-iostream
 -
-
-/mnt/d/GithubRepo/AriadneProva/tutorials/hybrid_evolution/fire_all.cpp
-cstdarg
--
-ariadne.hpp
-/mnt/d/GithubRepo/AriadneProva/tutorials/hybrid_evolution/ariadne.hpp
-fire.hpp
-/mnt/d/GithubRepo/AriadneProva/tutorials/hybrid_evolution/fire.hpp
 
 /usr/local/include/ariadne/algebra/algebra.hpp
 iosfwd
