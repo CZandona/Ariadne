@@ -21,7 +21,7 @@ Int main(Int argc, const char* argv[])
     
     
     StringVariable fire("fire");
-    StringVariable clock("clock");
+    StringVariable clk("clk");
 
     
     StringConstant increasing("increasing");
@@ -31,10 +31,10 @@ Int main(Int argc, const char* argv[])
     // Get the automata
     HybridAutomaton fire_automaton = getFire();
     //HybridAutomaton contr_automaton = getController();
-    HybridAutomaton clock_automaton = getClock();
+    HybridAutomaton clk_automaton = getClock();
     
     // Compose the automata
-    CompositeHybridAutomaton fire_system({fire_automaton,clock_automaton});
+    CompositeHybridAutomaton fire_system({fire_automaton,clk_automaton});
 
     // Print the system description on the command line
     cout << fire_system << endl;
@@ -53,7 +53,7 @@ Int main(Int argc, const char* argv[])
     // Declare the type to be used for the system evolution
     typedef GeneralHybridEvolver::OrbitType OrbitType;
 
-    HybridSet initial_set( {fire|increasing, clock|tmp},{t==1, temp==20} );
+    HybridSet initial_set( {fire|increasing, clk|tmp},{t==1, temp==20} );
     
 
     // Define the initial set, by supplying the location as a list of locations for each composed automata, and
