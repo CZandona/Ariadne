@@ -6,6 +6,12 @@
 
 #IncludeRegexTransform: 
 
+/mnt/d/GithubRepo/AriadneProva/tutorials/hybrid_evolution/clock.hpp
+cstdarg
+-
+ariadne.hpp
+/mnt/d/GithubRepo/AriadneProva/tutorials/hybrid_evolution/ariadne.hpp
+
 /mnt/d/GithubRepo/AriadneProva/tutorials/hybrid_evolution/fire.hpp
 cstdarg
 -
@@ -21,6 +27,8 @@ ariadne.hpp
 /mnt/d/GithubRepo/AriadneProva/tutorials/hybrid_evolution/ariadne.hpp
 fire.hpp
 /mnt/d/GithubRepo/AriadneProva/tutorials/hybrid_evolution/fire.hpp
+clock.hpp
+/mnt/d/GithubRepo/AriadneProva/tutorials/hybrid_evolution/clock.hpp
 
 /usr/local/include/ariadne/algebra/algebra.hpp
 iosfwd

@@ -3,7 +3,7 @@
 #include "ariadne.hpp"
 #include "fire.hpp"
 //#include "controller.hpp"
-//#include "clock.hpp"
+#include "clock.hpp"
 
 
 using namespace Ariadne;
@@ -21,20 +21,20 @@ Int main(Int argc, const char* argv[])
     
     
     StringVariable fire("fire");
-    //StringVariable clock("clock");
+    StringVariable clock("clock");
 
     
     StringConstant increasing("increasing");
-    //StringConstant tmp("tmp");
+    StringConstant tmp("tmp");
     
     
     // Get the automata
     HybridAutomaton fire_automaton = getFire();
     //HybridAutomaton contr_automaton = getController();
-    //HybridAutomaton clock_automaton = getClock();
+    HybridAutomaton clock_automaton = getClock();
     
     // Compose the automata
-    CompositeHybridAutomaton fire_system({fire_automaton});
+    CompositeHybridAutomaton fire_system({fire_automaton,clock_automaton});
 
     // Print the system description on the command line
     cout << fire_system << endl;
@@ -53,7 +53,7 @@ Int main(Int argc, const char* argv[])
     // Declare the type to be used for the system evolution
     typedef GeneralHybridEvolver::OrbitType OrbitType;
 
-    HybridSet initial_set( {fire|increasing},{t==1, temp==20} );
+    HybridSet initial_set( {fire|increasing, clock|tmp},{t==1, temp==20} );
     
 
     // Define the initial set, by supplying the location as a list of locations for each composed automata, and
