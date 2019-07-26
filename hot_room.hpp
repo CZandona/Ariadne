@@ -1,5 +1,5 @@
 /***************************************************************************
- *            car.hpp
+ *            tank.hpp
  *
  *  Copyright  2017 Luca Geretti
  *
@@ -21,26 +21,41 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-
-
-#include <cstdarg>
 #include "ariadne.hpp"
 
 
 using namespace Ariadne;
 
-inline AtomicHybridAutomaton getClock()
+inline CompositeHybridAutomaton create_heating_system()
 {
+    RealConstant fatt("fatt",345_decimal);
+    RealConstant fatt1("fatt",8_decimal);
+    RealConstant fatt2("fatt2",1_decimal);
+    RealConstant fatt3("fatt3",20_decimal);
+    
+ 
+    // creo le variabili
+    RealVariable temp("temp"); //temperatura
+    RealVariable C("C"); //tempo
+    
 
+    // Create the room object
+    HybridAutomaton hr("hr");
 
-  RealVariable t("time");
-  
-  AtomicHybridAutomaton clock("clock");
+    // Declare a trivial discrete location.
+    DiscreteLocation heating;
 
-  AtomicDiscreteLocation tmp("tmp");
+    // modello del sistema che incrementa la sua temperatura
+    hr.new_mode(heating,{dot(temp) = fatt*(log(fatt1*C+fatt2))+fatt3});
 
+    // Create the clock subsystem
+    HybridAutomaton clock;
+    clock.new_mode( {dot(C)=1.0_decimal} );
+    
 
-  clock.new_mode(tmp, {dot(t)=1} );
+    CompositeHybridAutomaton heating_system({clock,hr});
+    std::cout << "heating_system=" << heating_system << "\n" << "\n";
 
-  return clock;
+    return heating_system;
+
 }

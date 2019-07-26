@@ -14,9 +14,9 @@ find_package(Ariadne REQUIRED)
 include_directories(SYSTEM ${ARIADNE_INCLUDE_DIRS})
 
 # Set the executable along with the required source files
-add_executable(fire_all fire.hpp fire_all.cpp)
-#add_executable(hybrid hybrid_evolution_tutorial.cpp)
+add_executable(fire_system hot_room.hpp fire.cpp)
 
 # Instruct to link against the ariadne library
-target_link_libraries(fire_all ${ARIADNE_LIBRARIES})
+target_link_libraries(fire_system ${ARIADNE_LIBRARIES})
+
 

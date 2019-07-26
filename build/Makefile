@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /mnt/d/GithubRepo/AriadneProva/tutorials/hybrid_evolution
+CMAKE_SOURCE_DIR = /mnt/d/GithubRepo/AriadneGit
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /mnt/d/GithubRepo/AriadneProva/tutorials/hybrid_evolution/build
+CMAKE_BINARY_DIR = /mnt/d/GithubRepo/AriadneGit/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/GithubRepo/AriadneProva/tutorials/hybrid_evolution/build/CMakeFiles /mnt/d/GithubRepo/AriadneProva/tutorials/hybrid_evolution/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/GithubRepo/AriadneGit/build/CMakeFiles /mnt/d/GithubRepo/AriadneGit/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/GithubRepo/AriadneProva/tutorials/hybrid_evolution/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/GithubRepo/AriadneGit/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,44 +111,44 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named fire_all
+# Target rules for targets named fire_system
 
 # Build rule for target.
-fire_all: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 fire_all
-.PHONY : fire_all
+fire_system: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 fire_system
+.PHONY : fire_system
 
 # fast build rule for target.
-fire_all/fast:
-	$(MAKE) -f CMakeFiles/fire_all.dir/build.make CMakeFiles/fire_all.dir/build
-.PHONY : fire_all/fast
+fire_system/fast:
+	$(MAKE) -f CMakeFiles/fire_system.dir/build.make CMakeFiles/fire_system.dir/build
+.PHONY : fire_system/fast
 
-fire_all.o: fire_all.cpp.o
+fire.o: fire.cpp.o
 
-.PHONY : fire_all.o
+.PHONY : fire.o
 
 # target to build an object file
-fire_all.cpp.o:
-	$(MAKE) -f CMakeFiles/fire_all.dir/build.make CMakeFiles/fire_all.dir/fire_all.cpp.o
-.PHONY : fire_all.cpp.o
+fire.cpp.o:
+	$(MAKE) -f CMakeFiles/fire_system.dir/build.make CMakeFiles/fire_system.dir/fire.cpp.o
+.PHONY : fire.cpp.o
 
-fire_all.i: fire_all.cpp.i
+fire.i: fire.cpp.i
 
-.PHONY : fire_all.i
+.PHONY : fire.i
 
 # target to preprocess a source file
-fire_all.cpp.i:
-	$(MAKE) -f CMakeFiles/fire_all.dir/build.make CMakeFiles/fire_all.dir/fire_all.cpp.i
-.PHONY : fire_all.cpp.i
+fire.cpp.i:
+	$(MAKE) -f CMakeFiles/fire_system.dir/build.make CMakeFiles/fire_system.dir/fire.cpp.i
+.PHONY : fire.cpp.i
 
-fire_all.s: fire_all.cpp.s
+fire.s: fire.cpp.s
 
-.PHONY : fire_all.s
+.PHONY : fire.s
 
 # target to generate assembly for a file
-fire_all.cpp.s:
-	$(MAKE) -f CMakeFiles/fire_all.dir/build.make CMakeFiles/fire_all.dir/fire_all.cpp.s
-.PHONY : fire_all.cpp.s
+fire.cpp.s:
+	$(MAKE) -f CMakeFiles/fire_system.dir/build.make CMakeFiles/fire_system.dir/fire.cpp.s
+.PHONY : fire.cpp.s
 
 # Help Target
 help:
@@ -157,11 +157,11 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... fire_all"
+	@echo "... fire_system"
 	@echo "... edit_cache"
-	@echo "... fire_all.o"
-	@echo "... fire_all.i"
-	@echo "... fire_all.s"
+	@echo "... fire.o"
+	@echo "... fire.i"
+	@echo "... fire.s"
 .PHONY : help
 
 

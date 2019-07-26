@@ -1,4 +1,4 @@
-# Try to find the Ariadne library for rigorous numerics.
+﻿# Try to find the Ariadne library for rigorous numerics.
 #
 # Once done this will define:
 #
