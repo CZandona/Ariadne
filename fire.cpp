@@ -42,7 +42,7 @@ Int main(Int argc, const char* argv[])
     StringConstant heating("heating"); //unico stato hot_room per riscaldamento
     
     
-    //creo il sistema
+    //creo il sistema locazione + tempo
     CompositeHybridAutomaton heating_system=create_heating_system();
     cout << heating_system << endl;
 
