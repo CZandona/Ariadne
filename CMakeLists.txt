@@ -1,4 +1,5 @@
 # Preferable to avoid warnings during execution
+
 cmake_minimum_required(VERSION 3.9)
 
 # Set to search the root source directory for the FindAriadne.cmake module
