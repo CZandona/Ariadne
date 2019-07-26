@@ -32,7 +32,7 @@ Int main(Int argc, const char* argv[])
 
     // Dichiaro le variabili condivise
     RealVariable temp("temp"); //temperatura
-    RealVariable C("C"); //tempo
+    RealVariable t("t"); //tempo
 
     //automi creati
     StringVariable hr("hr"); //hot_room
@@ -55,17 +55,22 @@ Int main(Int argc, const char* argv[])
 
     // Declare the type to be used for the system evolution
     typedef GeneralHybridEvolver::OrbitType OrbitType;
+    
+    TaylorSeriesIntegrator integrator(MaximumError(1e-2), Order(3) );
+    evolver.set_integrator(integrator);
 
+    
     std::cout << "Computing evolution... " << std::flush;
     Dyadic Cinit_max(1,10u);
-    HybridSet initial_set(hr|heating,{temp==20, 0<=C<=Cinit_max});
+    HybridSet initial_set(hr|heating,{temp==3482, t==20});
+
     HybridTime evolution_time(5.0,25);
     OrbitType orbit = evolver.orbit(initial_set,evolution_time,Semantics::UPPER);
     std::cout << "done." << std::endl;
 
     std::cout << "Plotting trajectory... "<<std::flush;
     // plot fase riscaldamento stanza
-    Axes2d time_temp_axes(0<=TimeVariable()<=evolution_time.continuous_time(),20<=temp<=600);
+    Axes2d time_temp_axes(0<=TimeVariable()<=evolution_time.continuous_time(),3482<=temp<=10000);
     plot("fire - hot room",time_temp_axes, Colour(0.0,0.5,1.0), orbit);
 
 

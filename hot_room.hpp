@@ -27,15 +27,17 @@ using namespace Ariadne;
 
 inline CompositeHybridAutomaton create_heating_system()
 {
-    RealConstant fatt("fatt",345_decimal);
-    RealConstant fatt1("fatt1",8_decimal);
-    RealConstant fatt2("fatt2",1_decimal);
-    RealConstant fatt3("fatt3",20_decimal);
+    RealConstant a("a",345);
+    RealConstant b("b",8);
+    RealConstant c("c",1);
+    RealConstant d("d",20);
+    RealConstant e("e",0.25_decimal);
+    
     
  
     // creo le variabili
     RealVariable temp("temp"); //temperatura
-    RealVariable C("C"); //tempo
+    RealVariable t("t"); //tempo
     
 
     // Create the room object
@@ -44,19 +46,20 @@ inline CompositeHybridAutomaton create_heating_system()
     // Declare a trivial discrete location.
     DiscreteLocation heating;
 
-    /* dot(temp) = 154*(C^0.25)+20 formula per t<21s
-    dot(temp) = fatt*(log(fatt1*(C-fatt3)+fatt2))+fatt3 formula per t>=21s */
+    /* dot(temp) = 154*(t^0.25)+20 formula per t<21s
+    dot(temp) = a*(log(b*(t-d)+t))+d formula per t>=21s */
 
     /* formula per il raffreddamento
+    vedi quaderno
     */ 
     
     // modello del sistema che incrementa la sua temperatura
-    //hr.new_mode(heating, {dot(temp) = 154*(exp(C,0.25))+20});
-    hr.new_mode(heating,{dot(temp) = fatt*(log(fatt1*(C)+fatt2))+fatt3});
+    //hr.new_mode(heating, {dot(temp) = 154*(pow(t,0.25))+20});
+    hr.new_mode(heating,{dot(temp) = a*(log(b*(t-d)+t))+d});
 
     // Create the clock subsystem
     HybridAutomaton clock;
-    clock.new_mode( {dot(C)=1.0_decimal} );
+    clock.new_mode( {dot(t)=1.0_decimal} );
     
 
     CompositeHybridAutomaton heating_system({clock,hr});
