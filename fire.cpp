@@ -59,7 +59,7 @@ Int main(Int argc, const char* argv[])
     std::cout << "Computing evolution... " << std::flush;
     Dyadic Cinit_max(1,10u);
     HybridSet initial_set(hr|heating,{temp==20, 0<=C<=Cinit_max});
-    HybridTime evolution_time(2.0,25);
+    HybridTime evolution_time(5.0,25);
     OrbitType orbit = evolver.orbit(initial_set,evolution_time,Semantics::UPPER);
     std::cout << "done." << std::endl;
 
