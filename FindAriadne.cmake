@@ -1,5 +1,4 @@
 ﻿# Try to find the Ariadne library for rigorous numerics.
-#
 # Once done this will define:
 #
 #  ARIADNE_FOUND - system has Ariadne
