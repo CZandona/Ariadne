@@ -35,10 +35,11 @@ Int main(Int argc, const char* argv[])
     RealVariable t("t"); //tempo
 
     //automi creati
-    StringVariable hr("hr"); //hot_room
+    StringVariable heating("heating"); //hot_room
     
     //stati iniziali
-    StringConstant heating("heating"); //unico stato hot_room per riscaldamento
+    StringConstant start("start");
+    StringConstant end("end"); //unico stato hot_room per riscaldamento
     
     
     //creo il sistema locazione + tempo
@@ -51,7 +52,7 @@ Int main(Int argc, const char* argv[])
 
     // Set the evolution parameters
     evolver.configuration().set_maximum_enclosure_radius(3.05);
-    evolver.configuration().set_maximum_step_size(0.20);
+    evolver.configuration().set_maximum_step_size(0.002);
 
     // Declare the type to be used for the system evolution
     typedef GeneralHybridEvolver::OrbitType OrbitType;
@@ -62,15 +63,18 @@ Int main(Int argc, const char* argv[])
     
     std::cout << "Computing evolution... " << std::flush;
     Dyadic Cinit_max(1,10u);
-    HybridSet initial_set(hr|heating,{temp==3482, t==20});
-
-    HybridTime evolution_time(5.0,25);
+    //HybridSet initial_set(hr|heating_s,{temp==3482, t==20});
+    HybridSet initial_set(heating|start,{temp==20, 0<=t<=Cinit_max});
+    // ariadne calcola in secondi mentre la formula in minuti quindi se in
+    // 3 min raggiungo 600 gradi 
+    HybridTime evolution_time(1.9408,25);
     OrbitType orbit = evolver.orbit(initial_set,evolution_time,Semantics::UPPER);
     std::cout << "done." << std::endl;
 
     std::cout << "Plotting trajectory... "<<std::flush;
     // plot fase riscaldamento stanza
-    Axes2d time_temp_axes(0<=TimeVariable()<=evolution_time.continuous_time(),3482<=temp<=10000);
+    //Axes2d time_temp_axes(0<=TimeVariable()<=evolution_time.continuous_time(),3482<=temp<=10000);
+    Axes2d time_temp_axes(0<=TimeVariable()<=evolution_time.continuous_time(),20<=temp<=1000);
     plot("fire - hot room",time_temp_axes, Colour(0.0,0.5,1.0), orbit);
 
 
