@@ -6,15 +6,15 @@
 
 #IncludeRegexTransform: 
 
-/mnt/d/GithubRepo/AriadneGit/fire.cpp
+/mnt/d/GithubRepo/AriadneGit/non_det/fire.cpp
 ariadne.hpp
-/mnt/d/GithubRepo/AriadneGit/ariadne.hpp
+/mnt/d/GithubRepo/AriadneGit/non_det/ariadne.hpp
 hot_room.hpp
-/mnt/d/GithubRepo/AriadneGit/hot_room.hpp
+/mnt/d/GithubRepo/AriadneGit/non_det/hot_room.hpp
 
-/mnt/d/GithubRepo/AriadneGit/hot_room.hpp
+/mnt/d/GithubRepo/AriadneGit/non_det/hot_room.hpp
 ariadne.hpp
-/mnt/d/GithubRepo/AriadneGit/ariadne.hpp
+/mnt/d/GithubRepo/AriadneGit/non_det/ariadne.hpp
 
 /usr/local/include/ariadne/algebra/algebra.hpp
 iosfwd

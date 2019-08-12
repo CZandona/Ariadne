@@ -1,4 +1,4 @@
-# Install script for directory: /mnt/d/GithubRepo/AriadneGit
+# Install script for directory: /mnt/d/GithubRepo/AriadneGit/det
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/mnt/d/GithubRepo/AriadneGit/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/mnt/d/GithubRepo/AriadneGit/det/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
