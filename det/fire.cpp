@@ -63,11 +63,14 @@ Int main(Int argc, const char* argv[])
     
     std::cout << "Computing evolution... " << std::flush;
     Dyadic Cinit_max(1,10u);
+
     //HybridSet initial_set(hr|heating_s,{temp==3482, t==20});
-    HybridSet initial_set(heating|start,{temp==20, 0<=t<=Cinit_max});
+    double r=1.0/1024; double Ti=20;
+    Real Tinitmin(Ti+r); Real Tinitmax(Ti+3*r); Real Cinitmin(0+r);  // Tinit=16.0;
+    HybridSet initial_set(heating|start,{Tinitmin<=temp<=Tinitmax, 0<=t<=Cinit_max});
     // ariadne calcola in secondi mentre la formula in minuti quindi se in
     // 3 min raggiungo 600 gradi 
-    HybridTime evolution_time(1.9408,25);
+    HybridTime evolution_time(4.0,10);
     OrbitType orbit = evolver.orbit(initial_set,evolution_time,Semantics::UPPER);
     std::cout << "done." << std::endl;
 
@@ -75,7 +78,7 @@ Int main(Int argc, const char* argv[])
     // plot fase riscaldamento stanza
     //Axes2d time_temp_axes(0<=TimeVariable()<=evolution_time.continuous_time(),3482<=temp<=10000);
     Axes2d time_temp_axes(0<=TimeVariable()<=evolution_time.continuous_time(),20<=temp<=1000);
-    plot("Fire-HotRoom",time_temp_axes, Colour(0.0,0.5,1.0), orbit);
+    plot("FireHotRoom",time_temp_axes, Colour(0.0,0.5,1.0), orbit);
 
 
 

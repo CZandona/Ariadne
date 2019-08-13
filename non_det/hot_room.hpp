@@ -30,22 +30,24 @@ inline CompositeHybridAutomaton create_heating_system()
     RealConstant a("a",345); //costante per end heating
     RealConstant b("b",8); //costante per end heating
     RealConstant c("c",1); //costante per end heating
-    RealConstant d("d",0.2680_decimal); //costante 20 per end heating
+    RealConstant d("d",0.20_decimal); //costante 20s per end heating
     RealConstant e("e",0.25_decimal); // costante per start heating
     RealConstant f("f",154); //costante per start heating
     RealConstant g("g",625); // costante per coolon 
-    RealConstant timef("timef",1.3011_decimal); // tempo in cui si raggiungono 700 incendio
-    RealConstant i("i",2); // fattore correttivo cooling
+    RealConstant timef("timef",1.2487_decimal); // tempo in cui si raggiungono 600 incendio
+    RealConstant i("i",0.7_decimal); // fattore correttivo cooling
     RealConstant l("l",250); // costante per coolgoon e cooloff
     RealConstant h("h",3); // costante per coolgoon
     RealConstant m("m",20); // costante per stopHeating
-    RealConstant tempmorehot("tempmorehot",66.63_decimal);
+    RealConstant n("n",1.5487_decimal); // costante per coolgoon
+    RealConstant o("o",2.4487_decimal); // costante per cooloff
+    RealConstant p("p",0.30_decimal); // costante per coolgoon
+    RealConstant q("q",0.90_decimal); // costante per cooloff
+    
+    //RealConstant tempmorehot("tempmorehot",54.80_decimal);
     RealConstant tempf("tempf",600);
-    RealConstant tempgo("tempf",500);
-    RealConstant tempoff("tempf",200);
-    RealConstant delta("delta", 0.25_decimal);
-    //RealConstant temp_upper("temp_upper",600.25_decimal);
-    //RealConstant temp_lower("temp_lower",599.95_decimal);
+    RealConstant delta("delta", 0.01_decimal);
+   
 
     StringVariable heating("heating");
     StringConstant start("start");
@@ -73,12 +75,6 @@ inline CompositeHybridAutomaton create_heating_system()
     DiscreteEvent less_less_hot("less_less_hot");
     DiscreteEvent end_cool("end_cool");
 
-    /* dot(temp) = 154*(t^0.25)+20 formula per t<21s
-    dot(temp) = a*(log(b*(t-d)+c))+d formula per t>=21s */
-
-    /* formula per il raffreddamento
-    vedi quaderno
-    */ 
     
     // modello del sistema che incrementa la sua temperatura
     hr.new_mode( heating|start, {dot(temp) = 154*pow(t,Nat(0.25))+20} );
@@ -88,12 +84,13 @@ inline CompositeHybridAutomaton create_heating_system()
     hr.new_mode( heating|cooloff, {dot(temp) = (-l)*(timef-t*(-i))+tempf});
     hr.new_mode( heating|stopHeating, {dot(temp)=0});
 
-    hr.new_invariant( heating|start, temp<=tempmorehot+delta, must_heating );
-    hr.new_transition( heating|start, more_hot, heating|end, {next(temp)=temp}, temp>=tempmorehot-delta, EventKind::PERMISSIVE );
+    hr.new_invariant( heating|start, t<=d+delta, must_heating );
+    hr.new_transition( heating|start, more_hot, heating|end, {next(temp)=temp}, t>=d-delta, EventKind::PERMISSIVE );
     hr.new_transition( heating|end, too_hot, heating|coolon, {next(temp)=temp}, temp >=tempf, EventKind:: URGENT);
-    hr.new_transition( heating|coolon, less_hot, heating|coolgoon, {next(temp)=temp}, temp<=tempgo, EventKind::URGENT );
-    hr.new_transition( heating|coolgoon, less_less_hot, heating|cooloff, {next(temp)=temp}, temp<=tempoff, EventKind::URGENT );
+    hr.new_transition( heating|coolon, less_hot, heating|coolgoon, {next(temp)=temp}, t>=timef+p, EventKind::URGENT );
+    hr.new_transition( heating|coolgoon, less_less_hot, heating|cooloff, {next(temp)=temp}, t>=timef+p+q, EventKind::URGENT );
     hr.new_transition( heating|cooloff, end_cool, heating|stopHeating, {next(temp)=temp}, temp<=m, EventKind::URGENT );
+    
     // Create the clock subsystem
     HybridAutomaton clock;
     clock.new_mode( {dot(t)=1.0_decimal} );
