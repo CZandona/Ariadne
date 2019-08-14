@@ -1,0 +1,3 @@
+/mnt/d/GithubRepo/AriadneGit/non_det_tempiniziale/build/CMakeFiles/rebuild_cache.dir
+/mnt/d/GithubRepo/AriadneGit/non_det_tempiniziale/build/CMakeFiles/fire_system.dir
+/mnt/d/GithubRepo/AriadneGit/non_det_tempiniziale/build/CMakeFiles/edit_cache.dir
