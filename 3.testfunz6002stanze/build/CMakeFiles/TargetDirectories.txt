@@ -1,0 +1,3 @@
+/mnt/d/GithubRepo/AriadneGit/3.testfunz6002stanze/build/CMakeFiles/rebuild_cache.dir
+/mnt/d/GithubRepo/AriadneGit/3.testfunz6002stanze/build/CMakeFiles/fire_system.dir
+/mnt/d/GithubRepo/AriadneGit/3.testfunz6002stanze/build/CMakeFiles/edit_cache.dir
