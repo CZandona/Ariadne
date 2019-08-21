@@ -6,6 +6,12 @@
 
 #IncludeRegexTransform: 
 
+/mnt/d/GithubRepo/AriadneGit/4.test2stanze+valvola/clock.hpp
+cstdarg
+-
+ariadne.hpp
+/mnt/d/GithubRepo/AriadneGit/4.test2stanze+valvola/ariadne.hpp
+
 /mnt/d/GithubRepo/AriadneGit/4.test2stanze+valvola/fire.cpp
 ariadne.hpp
 /mnt/d/GithubRepo/AriadneGit/4.test2stanze+valvola/ariadne.hpp
@@ -15,6 +21,8 @@ hot_room2.hpp
 /mnt/d/GithubRepo/AriadneGit/4.test2stanze+valvola/hot_room2.hpp
 valve.hpp
 /mnt/d/GithubRepo/AriadneGit/4.test2stanze+valvola/valve.hpp
+clock.hpp
+/mnt/d/GithubRepo/AriadneGit/4.test2stanze+valvola/clock.hpp
 
 /mnt/d/GithubRepo/AriadneGit/4.test2stanze+valvola/hot_room.hpp
 ariadne.hpp

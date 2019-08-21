@@ -32,13 +32,13 @@ using namespace Ariadne;
 inline HybridAutomaton getClock()
 {
 
-  RealVariable tempo("tempo");
+  RealVariable t("t");
   StringVariable time("time");
   HybridAutomaton clk("clk");
   StringConstant tmp("tmp");
 
 
-  clk.new_mode(time|tmp, {dot(tempo)=1.0_decimal} );
+  clk.new_mode(time|tmp, {dot(t)=1.0_decimal} );
 
   return clk;
 }

@@ -78,21 +78,21 @@ inline HybridAutomaton create_heating_system()
 
     
     // modello del sistema che incrementa la sua temperatura
-    //hr.new_mode( heating|startHeating, {dot(temp) = 0, dot(t)=1.0_decimal} );
-    hr.new_mode( heating|start, {dot(temp) = 154*pow(t,Nat(0.25))+20, dot(t)=1.0_decimal} );
-    hr.new_mode( heating|end, {dot(temp) = a*((log(b*(t-d)+c))/log(r))+d, dot(t)=1.0_decimal} );
-    hr.new_mode( heating|coolon, {dot(temp) = (-g)*(aperture1)*(t-timef*(i))+tempf, dot(t)=1.0_decimal});
-    hr.new_mode( heating|coolgoon, {dot(temp) = (-l)*(aperture1)*(h-timef)*(t-timef*(i))+tempf, dot(t)=1.0_decimal});
-    hr.new_mode( heating|cooloff, {dot(temp) = (-l)*(aperture1)*(t-timef*(i))+tempf, dot(t)=1.0_decimal});
-    hr.new_mode( heating|stopHeating, {dot(temp)=0, dot(t)=1.0_decimal});
+    hr.new_mode( heating|startHeating, {dot(temp) = 0} );
+    hr.new_mode( heating|start, {dot(temp) = 154*pow(t,Nat(0.25))+20} );
+    hr.new_mode( heating|end, {dot(temp) = a*((log(b*(t-d)+c))/log(r))+d} );
+    hr.new_mode( heating|coolon, {dot(temp) = (-g)*(aperture1)*(t-timef*(i))+tempf});
+    hr.new_mode( heating|coolgoon, {dot(temp) = (-l)*(aperture1)*(h-timef)*(t-timef*(i))+tempf});
+    hr.new_mode( heating|cooloff, {dot(temp) = (-l)*(aperture1)*(t-timef*(i))+tempf});
+    hr.new_mode( heating|stopHeating, {dot(temp)=0});
 
     
-    //hr.new_transition( heating|startHeating, on, heating|start, {next(temp)=temp, next(t)=t}, t>=ts, EventKind::URGENT );
-    hr.new_transition( heating|start, more_hot, heating|end, {next(temp)=temp, next(t)=t}, t>=d, EventKind::URGENT );
-    hr.new_transition( heating|end, too_hot, heating|coolon, {next(temp)=temp, next(t)=t}, temp >=tempf, EventKind:: URGENT);
-    hr.new_transition( heating|coolon, less_hot, heating|coolgoon, {next(temp)=temp, next(t)=t}, t>=timef+p, EventKind::URGENT );
-    hr.new_transition( heating|coolgoon, less_less_hot, heating|cooloff, {next(temp)=temp, next(t)=t}, t>=timef+p+q, EventKind::URGENT );
-    hr.new_transition( heating|cooloff, end_cool, heating|stopHeating, {next(temp)=temp, next(t)=t}, temp<=m, EventKind::URGENT );
+    hr.new_transition( heating|startHeating, on, heating|start, {next(temp)=temp}, t>=ts, EventKind::URGENT );
+    hr.new_transition( heating|start, more_hot, heating|end, {next(temp)=temp}, t>=d, EventKind::URGENT );
+    hr.new_transition( heating|end, too_hot, heating|coolon, {next(temp)=temp}, temp >=tempf, EventKind:: URGENT);
+    hr.new_transition( heating|coolon, less_hot, heating|coolgoon, {next(temp)=temp}, t>=timef+p, EventKind::URGENT );
+    hr.new_transition( heating|coolgoon, less_less_hot, heating|cooloff, {next(temp)=temp}, t>=timef+p+q, EventKind::URGENT );
+    hr.new_transition( heating|cooloff, end_cool, heating|stopHeating, {next(temp)=temp}, temp<=m, EventKind::URGENT );
     
     // Create the clock subsystem
     /*HybridAutomaton clock;

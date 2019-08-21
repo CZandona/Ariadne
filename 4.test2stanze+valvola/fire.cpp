@@ -24,6 +24,7 @@
 #include "hot_room.hpp"
 #include "hot_room2.hpp"
 #include "valve.hpp"
+#include "clock.hpp"
 using namespace Ariadne;
 
 using std::cout; using std::endl;using std::flush;
@@ -36,24 +37,30 @@ Int main(Int argc, const char* argv[])
     RealVariable temp("temp"); //temperatura
     RealVariable t("t"); //tempo
     RealVariable temp2("temp2"); //temperatura
-    RealConstant t0("t0", 0.005_decimal); //tempo
+    RealConstant t0("t0", 0.005_decimal); 
 
     //automi creati
     StringVariable heating("heating"); //hot_room
     StringVariable heating2("heating2");
     StringVariable valve("valve");
+    StringVariable time("time");
     
     //stati iniziali
-    //StringConstant startHeating("startHeating");
+    StringConstant startHeating("startHeating");
     StringConstant end("end"); //unico stato hot_room per riscaldamento
     StringConstant start("start");
+    StringConstant tmp("tmp");
+    StringVariable aperture1("aperture1");
+    StringVariable aperture2("aperture2");
+    
     
     
     //creo il sistema locazione + tempo
     HybridAutomaton heating_system1=create_heating_system();
     HybridAutomaton heating_system2=create_heating_system2();
     HybridAutomaton valve_system = getValve();
-    CompositeHybridAutomaton heating_system({heating_system1, heating_system2, valve_system});
+    HybridAutomaton clock_system =  getClock();
+    CompositeHybridAutomaton heating_system({heating_system1, heating_system2, valve_system, clock_system});
     cout << heating_system << endl;
 
     // Creato un GeneralHybridEvolver object
@@ -77,7 +84,7 @@ Int main(Int argc, const char* argv[])
     //HybridSet initial_set(hr|heating_s,{temp==3482, t==20});
     double r=1.0/1024; double Ti=20;
     Real Tinitmin(Ti+r); Real Tinitmax(Ti+3*r); Real Cinitmin(0+r); 
-    HybridSet initial_set({heating|start,heating2|start, valve|start},{temp==20, temp2==20, t==t0});
+    HybridSet initial_set({valve|start, time|tmp},{Tinitmin<=temp<=Tinitmax, Tinitmin<=temp2<=Tinitmax, 0<=t<=Cinit_max});
     // ariadne calcola in secondi mentre la formula in minuti quindi se in
     // 3 min raggiungo 600 gradi 
     HybridTime evolution_time(4.6,10);
@@ -86,7 +93,7 @@ Int main(Int argc, const char* argv[])
 
     std::cout << "Plotting trajectory... "<<std::flush;
     // plot fase riscaldamento stanza
-    //Axes2d time_temp_axes(0<=TimeVariable()<=evolution_time.continuous_time(),3482<=temp<=10000);
+    
     Axes2d time_temp_axes(0<=TimeVariable()<=evolution_time.continuous_time(),20<=temp<=1000);
     plot("FireHotRoom",time_temp_axes, Colour(0.0,0.5,1.0), orbit);
 
