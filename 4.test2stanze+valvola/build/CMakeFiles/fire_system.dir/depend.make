@@ -3,6 +3,8 @@
 
 CMakeFiles/fire_system.dir/fire.cpp.o: ../fire.cpp
 CMakeFiles/fire_system.dir/fire.cpp.o: ../hot_room.hpp
+CMakeFiles/fire_system.dir/fire.cpp.o: ../hot_room2.hpp
+CMakeFiles/fire_system.dir/fire.cpp.o: ../valve.hpp
 CMakeFiles/fire_system.dir/fire.cpp.o: /usr/local/include/ariadne/algebra/algebra.hpp
 CMakeFiles/fire_system.dir/fire.cpp.o: /usr/local/include/ariadne/algebra/algebra_interface.hpp
 CMakeFiles/fire_system.dir/fire.cpp.o: /usr/local/include/ariadne/algebra/covector.hpp

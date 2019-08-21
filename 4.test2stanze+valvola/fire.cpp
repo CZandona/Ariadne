@@ -22,6 +22,8 @@
 
 #include "ariadne.hpp"
 #include "hot_room.hpp"
+#include "hot_room2.hpp"
+#include "valve.hpp"
 using namespace Ariadne;
 
 using std::cout; using std::endl;using std::flush;
@@ -33,17 +35,25 @@ Int main(Int argc, const char* argv[])
     // Dichiaro le variabili condivise
     RealVariable temp("temp"); //temperatura
     RealVariable t("t"); //tempo
+    RealVariable temp2("temp2"); //temperatura
+    RealConstant t0("t0", 0.005_decimal); //tempo
 
     //automi creati
     StringVariable heating("heating"); //hot_room
+    StringVariable heating2("heating2");
+    StringVariable valve("valve");
     
     //stati iniziali
-    StringConstant startHeating("startHeating");
+    //StringConstant startHeating("startHeating");
     StringConstant end("end"); //unico stato hot_room per riscaldamento
+    StringConstant start("start");
     
     
     //creo il sistema locazione + tempo
-    CompositeHybridAutomaton heating_system=create_heating_system();
+    HybridAutomaton heating_system1=create_heating_system();
+    HybridAutomaton heating_system2=create_heating_system2();
+    HybridAutomaton valve_system = getValve();
+    CompositeHybridAutomaton heating_system({heating_system1, heating_system2, valve_system});
     cout << heating_system << endl;
 
     // Creato un GeneralHybridEvolver object
@@ -67,7 +77,7 @@ Int main(Int argc, const char* argv[])
     //HybridSet initial_set(hr|heating_s,{temp==3482, t==20});
     double r=1.0/1024; double Ti=20;
     Real Tinitmin(Ti+r); Real Tinitmax(Ti+3*r); Real Cinitmin(0+r); 
-    HybridSet initial_set(heating|startHeating,{Tinitmin<=temp<=Tinitmax, 0<=t<=Cinit_max});
+    HybridSet initial_set({heating|start,heating2|start, valve|start},{temp==20, temp2==20, t==t0});
     // ariadne calcola in secondi mentre la formula in minuti quindi se in
     // 3 min raggiungo 600 gradi 
     HybridTime evolution_time(4.6,10);
