@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/fire_system.dir/fire.cpp.o  -o fire_system -Wl,-rpath,/usr/local/lib /usr/local/lib/libariadne.so 
