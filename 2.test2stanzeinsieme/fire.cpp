@@ -68,13 +68,13 @@ Int main(Int argc, const char* argv[])
     evolver.verbosity = evolver_verbosity;
 
     // Set the evolution parameters
-    evolver.configuration().set_maximum_enclosure_radius(3.05);
-    evolver.configuration().set_maximum_step_size(0.25);
+    evolver.configuration().set_maximum_enclosure_radius(0.01);
+    evolver.configuration().set_maximum_step_size(0.001);
 
     // Declare the type to be used for the system evolution
     typedef GeneralHybridEvolver::OrbitType OrbitType;
     
-    TaylorSeriesIntegrator integrator(MaximumError(1e-2), Order(3) );
+    TaylorSeriesIntegrator integrator(MaximumError(1e-10), Order(3) );
     evolver.set_integrator(integrator);
 
     
@@ -87,7 +87,7 @@ Int main(Int argc, const char* argv[])
     HybridSet initial_set({heating|startHeating, time|tmp, heating2|startHeating, valve|closed},{Tinitmin<=temp<=Tinitmax, t==0,Tinitmin<=temp2<=Tinitmax});
     // ariadne calcola in secondi mentre la formula in minuti quindi se in
     // 3 min raggiungo 600 gradi 
-    HybridTime evolution_time(3.4043,1000);
+    HybridTime evolution_time(4.8676,200);
     OrbitType orbit = evolver.orbit(initial_set,evolution_time,Semantics::UPPER);
     std::cout << "done." << std::endl;
 
