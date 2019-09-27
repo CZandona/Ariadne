@@ -22,6 +22,7 @@
 
 #include "ariadne.hpp"
 #include "hot_room.hpp"
+#include "hot_room2.hpp"
 using namespace Ariadne;
 
 using std::cout; using std::endl;using std::flush;

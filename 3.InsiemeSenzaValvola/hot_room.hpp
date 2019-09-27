@@ -37,7 +37,7 @@ inline HybridAutomaton create_heating_system()
     RealConstant timef("timef",2.0630_decimal); // tempo in cui si raggiungono 600 incendio
     RealConstant i("i",0.2_decimal); // fattore correttivo cooling
     RealConstant l("l",250); // costante per coolgoon e cooloff
-    RealConstant h("h",5_decimal); // costante per coolgoon
+    RealConstant h("h",4.3_decimal); // costante per coolgoon
     RealConstant m("m",20); // costante per stopHeating
     RealConstant n("n",1.5487_decimal); // costante per coolgoon
     RealConstant o("o",2); // costante per cooloff
@@ -63,7 +63,7 @@ inline HybridAutomaton create_heating_system()
     // creo le variabili
     RealVariable temp("temp"); //temperatura
     RealVariable t("t"); //tempo
-    RealVariable aperture2("aperture2");
+    //RealVariable aperture2("aperture2");
 
         
 
@@ -82,15 +82,16 @@ inline HybridAutomaton create_heating_system()
     
     // modello del sistema che incrementa la sua temperatura
     hr.new_mode( heating|startHeating, {dot(temp) = 0} );
+    //hr.new_mode( heating|start, {dot(temp) = 154*pow(t,0.25_decimal))+20} );
     hr.new_mode( heating|start, {dot(temp) = 154*pow(t,Nat(0.25))+20} );
     hr.new_mode( heating|end, {dot(temp) = a*((log(b*(t-d)+c))/log(r))+d} );
     //hr.new_mode( heating|coolon, {dot(temp) = (-g)*(1-aperture2)*(t-timef*(i))+tempf});
     //hr.new_mode( heating|coolgoon, {dot(temp) = (-l)*(1-aperture2)*(h-timef)*(t-timef*(i))+tempf});
     //hr.new_mode( heating|cooloff, {dot(temp) = (l)*(1-aperture2)*(t-timef*(-i))+tempf});
-    hr.new_mode( heating|coolon, {dot(temp) = tempf+((-g)*(1-aperture2)*(timef-(t*(-i/(1-aperture2)))))});
-    hr.new_mode( heating|coolgoon, {dot(temp) = tempf+((-l)*(1-aperture2)*(h-t)*(timef-(t*(-u/(1-aperture2)))))});
-    hr.new_mode( heating|cooloff, {dot(temp) = tempf+((-l)*(1-aperture2)*(timef-(t*(-s/(1-aperture2)))))});
-    hr.new_mode( heating|stopHeating, {dot(temp) = 1-aperture2});
+    hr.new_mode( heating|coolon, {dot(temp) = tempf+((-g)*(timef-(t*(-i))))});
+    hr.new_mode( heating|coolgoon, {dot(temp) = tempf+((-l)*(h-t)*(timef-(t*(-u))))});
+    hr.new_mode( heating|cooloff, {dot(temp) = tempf+((-l)*(timef-(t*(-s))))});
+    hr.new_mode( heating|stopHeating, {dot(temp) = 0});
 
     
     hr.new_transition( heating|startHeating, on, heating|start, {next(temp)=temp}, t>=ts, EventKind::URGENT );

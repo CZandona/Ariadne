@@ -37,7 +37,6 @@ Int main(Int argc, const char* argv[])
     // Dichiaro le variabili condivise
     RealVariable temp("temp"); //temperatura
     RealVariable temp2("temp2"); //temperatura
-    RealVariable aperture("aperture"); //apertura valvola
     RealVariable aperture2("aperture2"); //apertura valvola
     RealVariable t("t"); //tempo
    
@@ -87,18 +86,19 @@ Int main(Int argc, const char* argv[])
     HybridSet initial_set({heating|startHeating, time|tmp, heating2|startHeating, valve|closed},{temp==20, t==0,temp2==20});
     // ariadne calcola in secondi mentre la formula in minuti quindi se in
     // 3 min raggiungo 600 gradi 
-    HybridTime evolution_time(4.8676,5);
+    //HybridTime evolution_time(4.8676,5);
+    HybridTime evolution_time(3.3270,100);
     OrbitType orbit = evolver.orbit(initial_set,evolution_time,Semantics::UPPER);
     std::cout << "done." << std::endl;
 
     std::cout << "Plotting trajectory... "<<std::flush;
-    // plot fase riscaldamento stanza
-    //Axes2d time_temp_axes(0<=TimeVariable()<=evolution_time.continuous_time(),3482<=temp<=10000);
     Axes2d time_temp_axes(0<=TimeVariable()<=evolution_time.continuous_time(),20<=temp<=1000);
     plot("FireHotRoomTTemp",time_temp_axes, Colour(0.0,0.5,1.0), orbit);
+    std::cout << "Fine plot 1" << "\n";
     Axes2d time_temp2_axes(0<=TimeVariable()<=evolution_time.continuous_time(),20<=temp2<=1000);
     plot("FireHotRoomTTemp2",time_temp2_axes, Colour(0.0,0.5,1.0), orbit);
-    Axes2d time_valve_axes(0<=TimeVariable()<=evolution_time.continuous_time(),0<=aperture<=1);
+    std::cout << "Fine plot 2" << "\n";
+    Axes2d time_valve_axes(0<=TimeVariable()<=evolution_time.continuous_time(),0<=aperture2<=1);
     plot("FireHotRoomTAperture",time_valve_axes, Colour(0.0,0.5,1.0), orbit);
 
 

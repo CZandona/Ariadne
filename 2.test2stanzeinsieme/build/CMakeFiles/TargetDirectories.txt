@@ -1,3 +1,0 @@
-/mnt/d/GithubRepo/Prove2/600gradi/build/CMakeFiles/rebuild_cache.dir
-/mnt/d/GithubRepo/Prove2/600gradi/build/CMakeFiles/fire_system.dir
-/mnt/d/GithubRepo/Prove2/600gradi/build/CMakeFiles/edit_cache.dir
