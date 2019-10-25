@@ -58,7 +58,8 @@ inline AtomicHybridAutomaton getValve()
     // Define the transitions
     valve_automaton.new_transition(closed,opening,opened,temp>=600,EventKind::URGENT);
     valve_automaton.new_transition(opened,modulating,modulated,temp2>=600,EventKind::URGENT);
-    valve_automaton.new_transition(modulated,finishing,closed,temp<=20,EventKind::URGENT);
+    valve_automaton.new_transition(modulated,finishing,closed,temp<=19.99_decimal,EventKind::URGENT);
+    
 
     return valve_automaton;
 }

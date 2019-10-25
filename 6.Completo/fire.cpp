@@ -87,23 +87,23 @@ Int main(Int argc, const char* argv[])
     HybridSet initial_set({heating|startHeating, time|tmp, valve|closed, heating2|startHeating},{temp==20, t==0,temp2==20});
     // ariadne calcola in secondi mentre la formula in minuti quindi se in
     // 3 min raggiungo 600 gradi 
-    //HybridTime evolution_time(4.8676,5);
-    HybridTime evolution_time(2.7222,100);
+    HybridTime evolution_time(2.7210,100);
+    //HybridTime evolution_time(2.7209,100);
     OrbitType orbit = evolver.orbit(initial_set,evolution_time,Semantics::UPPER);
     std::cout << "done." << std::endl;
 
     std::cout << "Plotting trajectory... "<<std::flush;
     // plot fase riscaldamento stanza
     //Axes2d time_temp_axes(0<=TimeVariable()<=evolution_time.continuous_time(),3482<=temp<=10000);
-    Axes2d time_temp_axes(0<=TimeVariable()<=evolution_time.continuous_time(),20<=temp<=1000);
+    Axes2d time_temp_axes(0<=TimeVariable()<=evolution_time.continuous_time()+1,19<=temp<=1000);
     plot("FireHotRoomTTemp",time_temp_axes, Colour(0.0,0.5,1.0), orbit);
     std::cout << "Fine plot 1" << "\n";
-    Axes2d time_temp2_axes(0<=TimeVariable()<=evolution_time.continuous_time(),20<=temp2<=1000);
+    Axes2d time_temp2_axes(0<=TimeVariable()<=evolution_time.continuous_time()+1,19<=temp2<=1000);
     plot("FireHotRoomTTemp2",time_temp2_axes, Colour(0.0,0.5,1.0), orbit);
     std::cout << "Fine plot 2" << "\n";
-    Axes2d time_valve_axes(0<=TimeVariable()<=evolution_time.continuous_time(),0<=aperture1<=1);
+    Axes2d time_valve_axes(0<=TimeVariable()<=evolution_time.continuous_time()+1,-0.1_decimal<=aperture1<=1.3_decimal);
     plot("FireHotRoomTAperture1",time_valve_axes, Colour(0.0,0.5,1.0), orbit);
-    std::cout << "Fine plot 3" << "\n";
+    
 
 
 

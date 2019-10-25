@@ -35,7 +35,7 @@ inline HybridAutomaton create_heating_system()
     RealConstant timef("timef",1.0907_decimal); // tempo in cui si raggiungono 600 incendio
     RealConstant l("l",330); // costante per coolgoon e cooloff
     RealConstant h("h",2.1_decimal); // costante per coolgoon
-    RealConstant m("m",20); // costante per stopHeating
+    RealConstant m("m",19.99_decimal); // costante per stopHeating
     RealConstant p("p",0.50_decimal); // costante per coolgoon
     RealConstant q("q",0.90_decimal); // costante per cooloff
     RealConstant r("r",10);
